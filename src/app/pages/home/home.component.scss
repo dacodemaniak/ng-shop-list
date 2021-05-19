@@ -8,4 +8,15 @@ table {
       }
     }
   }
+  thead {
+    tr {
+      th {
+        &:first-child {
+          width: .5em;
+          background-color: red;
+          color: white;
+        }
+      }
+    }
+  }
 }

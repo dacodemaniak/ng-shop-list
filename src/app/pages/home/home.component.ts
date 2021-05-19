@@ -9,6 +9,8 @@ import { ProductInterface } from './../../core/interfaces/product-interface';
 export class HomeComponent implements OnInit {
   public shopList: ProductInterface[] = [];
 
+  public allSelected = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -35,6 +37,20 @@ export class HomeComponent implements OnInit {
       this.shopList.indexOf(product),
       1
     );
+  }
+
+  public changeSelection(product: ProductInterface): void {
+    product.isSelected = !product.isSelected;
+
+    if (
+      this.shopList
+        .filter((item: ProductInterface) => item.isSelected)
+        .length !== this.shopList.length
+    ) {
+      this.allSelected = false;
+    } else {
+      this.allSelected = true;
+    }
   }
 
 }
