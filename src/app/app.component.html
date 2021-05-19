@@ -1,0 +1,36 @@
+
+  <app-header></app-header>
+
+  <div>
+    <p>{{ title }}</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Produit</th>
+          <th>Quantité</th>
+          <th>Unité</th>
+          <th>&nbsp;</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of shopList">
+          <td>{{ product.name }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.unity }}</td>
+          <td>
+            <button type="button" (click)="remove(product)">x</button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">
+            {{ shopList.length }} produits dans ma liste.
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <app-footer></app-footer>
+
