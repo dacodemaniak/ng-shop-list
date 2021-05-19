@@ -3,4 +3,5 @@ export interface ProductInterface {
   name: string;
   quantity: number;
   unit?: string;
+  isSelected?: boolean;
 }

@@ -10,7 +10,6 @@ export class HomeComponent implements OnInit {
   public shopList: ProductInterface[] = [];
 
   public allSelected = false;
-  public isSelected = false;
 
   constructor() { }
 
@@ -40,15 +39,18 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  public decrement(product: ProductInterface): void {
-    product.quantity--;
-    if (product.quantity === 0) {
-      this.remove(product);
-    }
-  }
+  public changeSelection(product: ProductInterface): void {
+    product.isSelected = !product.isSelected;
 
-  public increment(product: ProductInterface): void {
-    product.quantity++;
+    if (
+      this.shopList
+        .filter((item: ProductInterface) => item.isSelected)
+        .length !== this.shopList.length
+    ) {
+      this.allSelected = false;
+    } else {
+      this.allSelected = true;
+    }
   }
 
 }

@@ -12,8 +12,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let product of shopList">
-            <td>
-              {{ isSelected || allSelected ? 'x' : ''}}
+            <td (click)="changeSelection(product)">
+              {{ product.isSelected || allSelected ? 'x' : ''}}
             </td>
             <td class="to-upper">{{ product.name | uppercase }}</td>
             <td>
