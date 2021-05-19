@@ -2,6 +2,9 @@
       <table>
         <thead>
           <tr>
+            <th (click)="allSelected = !allSelected">
+              {{ allSelected ? 'x' : ''}}
+            </th>
             <th>Produit</th>
             <th>Quantité</th>
             <th>Unité</th>
@@ -9,8 +12,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let product of shopList">
+            <td>
+              {{ isSelected || allSelected ? 'x' : ''}}
+            </td>
             <td class="to-upper">{{ product.name | uppercase }}</td>
-            <td>{{ product.quantity }}</td>
+            <td>
+              <app-product-quantity [product]="product" (removeProduct)="remove($event)"></app-product-quantity>
+            </td>
             <td>{{ product.unity }}</td>
             <td>
               <button type="button" (click)="remove(product)">x</button>
@@ -25,6 +33,7 @@
           </tr>
         </tfoot>
       </table>
+      {{ shopList | json }}
     </ng-container>
 
 

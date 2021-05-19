@@ -9,6 +9,9 @@ import { ProductInterface } from './../../core/interfaces/product-interface';
 export class HomeComponent implements OnInit {
   public shopList: ProductInterface[] = [];
 
+  public allSelected = false;
+  public isSelected = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -35,6 +38,17 @@ export class HomeComponent implements OnInit {
       this.shopList.indexOf(product),
       1
     );
+  }
+
+  public decrement(product: ProductInterface): void {
+    product.quantity--;
+    if (product.quantity === 0) {
+      this.remove(product);
+    }
+  }
+
+  public increment(product: ProductInterface): void {
+    product.quantity++;
   }
 
 }
