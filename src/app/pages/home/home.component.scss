@@ -1,0 +1,11 @@
+table {
+  tbody {
+    tr {
+      td {
+        &.to-upper {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
