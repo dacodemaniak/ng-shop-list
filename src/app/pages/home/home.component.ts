@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
 
   public allSelected = false;
 
+  public editMode = false;
+
   constructor(
     private shopListService: ShopListService
   ) { }
@@ -25,11 +27,12 @@ export class HomeComponent implements OnInit {
   }
 
   public add(): void {
-    this.shopList.push(this.shopListService.add({
-      name: 'Sel',
-      quantity: 500,
-      unit: 'g'
-    }));
+    this.editMode = true;
+  }
+
+  public addToList(product: ProductInterface): void {
+    this.shopList.push(product);
+    this.editMode = false;
   }
 
   public remove(product: ProductInterface): void {

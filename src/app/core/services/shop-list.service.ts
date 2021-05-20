@@ -29,15 +29,15 @@ export class ShopListService implements ListInterface<ProductInterface> {
   }
 
   public add(product: ProductInterface): ProductInterface {
-    const products: ProductInterface[] = [];
+/*     const products: ProductInterface[] = [];
     this.shopList.forEach((element: ProductInterface, key: number) => {
       products.push(element);
     });
-    products.sort((a: ProductInterface, b: ProductInterface) => b.id - a.id);
+    products.sort((a: ProductInterface, b: ProductInterface) => b.id - a.id); */
 
-    // product.id = [...this.shopList.keys()].sort((a: number, b: number) => a - b)[0] + 1;
+    product.id = [...this.shopList.keys()].sort((a: number, b: number) => b - a)[0] + 1;
 
-    product.id = products[0].id + 1;
+    // product.id = products[0].id + 1;
 
     this.shopList.set(product.id, product);
 
