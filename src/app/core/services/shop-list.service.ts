@@ -1,3 +1,4 @@
+import { ProductModel } from './../models/product-model';
 import { ProductInterface } from './../interfaces/product-interface';
 import { Injectable } from '@angular/core';
 import { ListInterface } from '../interfaces/list-interface';
@@ -35,13 +36,25 @@ export class ShopListService implements ListInterface<ProductInterface> {
     });
     products.sort((a: ProductInterface, b: ProductInterface) => b.id - a.id); */
 
-    product.id = [...this.shopList.keys()].sort((a: number, b: number) => b - a)[0] + 1;
+    product.id = this.shopList.size ? [...this.shopList.keys()].sort((a: number, b: number) => b - a)[0] + 1 : 1;
 
+    if (this.shopList.size) {
+      const products: number[] = [...this.shopList.keys()];
+      const orderedProducts: number[] = products.sort((n1: number, n2: number) => n1 - n2);
+      product.id = orderedProducts[orderedProducts.length - 1] + 1;
+    } else {
+      product.id = 1;
+    }
     // product.id = products[0].id + 1;
 
     this.shopList.set(product.id, product);
 
     this.shopListNumber$.next(this.shopList.size);
+
+    localStorage.setItem(
+      'product-list',
+      JSON.stringify([... this.shopList.values()])
+    );
 
     return this.shopList.get(product.id);
   }
@@ -50,24 +63,14 @@ export class ShopListService implements ListInterface<ProductInterface> {
   public update(product: ProductInterface): void {}
 
   private populate(): void {
-    this.shopList.set(
-      1,
-      {
-        id: 1,
-        name: 'Pommes de terre',
-        quantity: 1,
-        unit: 'Kg'
-      }
-    )
-    .set(
-      2,
-      {
-        id: 2,
-        name: 'Oranges',
-        quantity: 1,
-        unit: 'Kg'
-      }
-    );
+    const rawStorage = localStorage.getItem('product-list');
+    if (rawStorage) {
+      const rawProducts = JSON.parse(rawStorage);
+      rawProducts.map((item: any) => {
+        const product: ProductModel = new ProductModel().deserialize(item);
+        this.shopList.set(product.id, product);
+      });
+    }
     this.shopListNumber$.next(this.shopList.size);
   }
 
