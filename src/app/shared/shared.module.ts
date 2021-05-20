@@ -4,7 +4,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
 
+import {
+  MatToolbarModule
+} from '@angular/material/toolbar';
 
+const materials = [
+  MatToolbarModule
+];
 
 @NgModule({
   declarations: [
@@ -13,12 +19,14 @@ import { ProductQuantityComponent } from './components/product-quantity/product-
     ProductQuantityComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ...materials
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ...materials,
   ]
 })
 export class SharedModule { }
