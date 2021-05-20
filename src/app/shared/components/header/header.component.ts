@@ -1,3 +1,5 @@
+import { BehaviorSubject } from 'rxjs';
+import { ShopListService } from './../../../core/services/shop-list.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +10,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() public title: string;
 
-  constructor() { }
+  public shopListNumber: number;
+
+  constructor(
+    private shopListService: ShopListService
+  ) { }
 
   ngOnInit(): void {
+    this.shopListService.shopListNumber
+      .subscribe((nbProduct) => {this.shopListNumber = nbProduct; });
   }
 
 }

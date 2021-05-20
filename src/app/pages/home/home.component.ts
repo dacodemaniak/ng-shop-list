@@ -1,3 +1,4 @@
+import { ShopListService } from './../../core/services/shop-list.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductInterface } from './../../core/interfaces/product-interface';
 
@@ -11,25 +12,24 @@ export class HomeComponent implements OnInit {
 
   public allSelected = false;
 
-  constructor() { }
+  constructor(
+    private shopListService: ShopListService
+  ) { }
 
   ngOnInit(): void {
-    this.shopList.push(
-      {
-        name: 'Pommes de terre',
-        quantity: 1,
-        unit: 'Kg'
-      }
-    );
-    this.shopList.push(
-      {
-        name: 'Oranges',
-        quantity: 1,
-        unit: 'Kg'
-      }
-    );
+    this.shopList = this.shopListService.toArray();
+  }
 
-    console.log(this.shopList.length + ' éléments dans la liste');
+  public list(): Map<number, ProductInterface> {
+    return this.shopListService.list;
+  }
+
+  public add(): void {
+    this.shopList.push(this.shopListService.add({
+      name: 'Sel',
+      quantity: 500,
+      unit: 'g'
+    }));
   }
 
   public remove(product: ProductInterface): void {

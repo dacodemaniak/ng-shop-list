@@ -35,7 +35,17 @@
         </tfoot>
       </table>
       {{ shopList | json }}
+
+      <!-- ShopList from Map -->
+      <ul>
+        <li *ngFor="let item of list() | keyvalue">
+          {{ item.key }} {{ item.value.name }}
+        </li>
+      </ul>
     </ng-container>
 
+    <button type="button" (click)="add()">
+      Ajouter
+    </button>
 
     <ng-template #noProduct>{{ shopList.length | pluralize }}</ng-template>
