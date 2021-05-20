@@ -44,8 +44,12 @@
       </ul>
     </ng-container>
 
-    <button type="button" (click)="add()">
+    <button type="button" (click)="add()" [disabled]="editMode">
       Ajouter
     </button>
+
+    <ng-container *ngIf="editMode">
+      <app-product-form (newProduct)="addToList($event)"></app-product-form>
+    </ng-container>
 
     <ng-template #noProduct>{{ shopList.length | pluralize }}</ng-template>

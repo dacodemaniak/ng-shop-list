@@ -7,10 +7,22 @@ import { ProductQuantityComponent } from './components/product-quantity/product-
 import {
   MatToolbarModule
 } from '@angular/material/toolbar';
+import {
+  MatFormFieldModule
+} from '@angular/material/form-field';
+import {
+  MatInputModule
+} from '@angular/material/input';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { UpdateBtnDirective } from './directives/update-btn.directive';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 const materials = [
-  MatToolbarModule
+  MatToolbarModule,
+  MatFormFieldModule,
+  MatInputModule
 ];
 
 @NgModule({
@@ -18,10 +30,12 @@ const materials = [
     HeaderComponent,
     FooterComponent,
     ProductQuantityComponent,
-    UpdateBtnDirective
+    UpdateBtnDirective,
+    ProductFormComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ...materials
   ],
   exports: [
@@ -29,6 +43,7 @@ const materials = [
     FooterComponent,
     ProductQuantityComponent,
     UpdateBtnDirective,
+    ProductFormComponent,
     ...materials,
   ]
 })

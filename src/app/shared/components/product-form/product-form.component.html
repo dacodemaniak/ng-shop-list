@@ -1,0 +1,33 @@
+<form [formGroup]="form" (ngSubmit)="validate()">
+  <mat-form-field>
+    <input matInput placeholder="Produit..." formControlName="name">
+    <mat-error *ngIf="c.name.errors">
+      Le champ Produit est ne peut pas être vide...
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Quantité..." formControlName="quantity">
+    <mat-error *ngIf="c.quantity.errors">
+      <div *ngIf="c.quantity.hasError('required')">
+        La quantité ne peut pas être vide...
+      </div>
+      <div *ngIf="c.quantity.hasError('min')">
+        La quantité ne peut pas être inférieure à {{ c.quantity.errors.min.min }}...
+      </div>
+      <div *ngIf="c.quantity.hasError('max')">
+        La quantité ne peut pas être supérieure à {{ c.quantity.errors.max.max }}...
+      </div>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Unité..." formControlName="unit">
+  </mat-form-field>
+
+  <button
+    [disabled]="form.invalid"
+  >
+    Valider
+  </button>
+</form>
