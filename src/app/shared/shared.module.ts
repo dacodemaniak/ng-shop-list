@@ -7,6 +7,7 @@ import { ProductQuantityComponent } from './components/product-quantity/product-
 import {
   MatToolbarModule
 } from '@angular/material/toolbar';
+import { UpdateBtnDirective } from './directives/update-btn.directive';
 
 const materials = [
   MatToolbarModule
@@ -16,7 +17,8 @@ const materials = [
   declarations: [
     HeaderComponent,
     FooterComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    UpdateBtnDirective
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ const materials = [
     HeaderComponent,
     FooterComponent,
     ProductQuantityComponent,
+    UpdateBtnDirective,
     ...materials,
   ]
 })

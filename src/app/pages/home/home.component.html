@@ -21,6 +21,7 @@
             </td>
             <td>{{ product.unity }}</td>
             <td>
+              <span appUpdateBtn [innerText]="'Mise à jour'"></span>
               <button type="button" (click)="remove(product)">x</button>
             </td>
           </tr>
