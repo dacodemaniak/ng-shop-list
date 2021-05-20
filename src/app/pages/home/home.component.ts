@@ -40,6 +40,8 @@ export class HomeComponent implements OnInit {
       this.shopList.indexOf(product),
       1
     );
+    // Call service to do so...
+    this.shopListService.remove(product);
   }
 
   public changeSelection(product: ProductInterface): void {

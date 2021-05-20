@@ -59,7 +59,15 @@ export class ShopListService implements ListInterface<ProductInterface> {
     return this.shopList.get(product.id);
   }
 
-  public remove(product: ProductInterface): void {}
+  public remove(product: ProductInterface): void {
+    this.shopList.delete(product.id);
+    localStorage.setItem(
+      'product-list',
+      JSON.stringify([... this.shopList.values()])
+    );
+    this.shopListNumber$.next(this.shopList.size);
+  }
+
   public update(product: ProductInterface): void {}
 
   private populate(): void {
