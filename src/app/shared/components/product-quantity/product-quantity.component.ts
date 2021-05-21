@@ -1,3 +1,4 @@
+import { ShopListService } from './../../../core/services/shop-list.service';
 import { ProductInterface } from './../../../core/interfaces/product-interface';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
@@ -10,7 +11,9 @@ export class ProductQuantityComponent implements OnInit {
   @Input() public product: ProductInterface;
   @Output() public removeProduct: EventEmitter<ProductInterface> = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private shopListService: ShopListService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +27,7 @@ export class ProductQuantityComponent implements OnInit {
 
   public increment(): void {
     this.product.quantity++;
+    this.shopListService.update(this.product);
   }
 
 }

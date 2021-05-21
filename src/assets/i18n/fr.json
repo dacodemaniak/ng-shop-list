@@ -1,0 +1,11 @@
+{
+  "title": "Shop List",
+  "home": {
+    "product": "Produit",
+    "quantity": "Quantité",
+    "unit": "Unité"
+  },
+  "header": {
+    "languageSwitcher": "Sélectionner..."
+  }
+}

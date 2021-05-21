@@ -5,9 +5,9 @@
             <th (click)="allSelected = !allSelected">
               {{ allSelected ? 'x' : ''}}
             </th>
-            <th>Produit</th>
-            <th>Quantité</th>
-            <th>Unité</th>
+            <th>{{ 'home.product' | translate }}</th>
+            <th>{{ 'home.quantity' | translate }}</th>
+            <th>{{ 'home.unit' | translate }}</th>
             <th>&nbsp;</th>
         </thead>
         <tbody>
@@ -21,7 +21,7 @@
             </td>
             <td>{{ product.unity }}</td>
             <td>
-              <span appUpdateBtn [innerText]="'Mise à jour'"></span>
+              <span appUpdateBtn [innerText]="'Mise à jour'" [product]="product"></span>
               <button type="button" (click)="remove(product)">x</button>
             </td>
           </tr>
@@ -34,7 +34,6 @@
           </tr>
         </tfoot>
       </table>
-      {{ shopList | json }}
 
       <!-- ShopList from Map -->
       <ul>

@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ShopListService } from './core/services/shop-list.service';
 import { Component, OnInit } from '@angular/core';
 @Component({
@@ -10,7 +11,8 @@ export class AppComponent implements OnInit {
   private _title = 'shop-list';
 
   public constructor(
-    private shopListService: ShopListService
+    private shopListService: ShopListService,
+    private translateService: TranslateService
   ) {}
 
   public ngOnInit(): void {
@@ -18,7 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   public get title(): string {
-    return this._title;
+    return this.translateService.instant('title');
   }
 
 

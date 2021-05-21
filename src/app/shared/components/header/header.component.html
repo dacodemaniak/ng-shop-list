@@ -1,3 +1,14 @@
 <mat-toolbar color="primary">
   {{ title }} ({{ shopListNumber }})
+  <span class="spacer"></span>
+  <mat-form-field>
+    <mat-select
+      id="language"
+      [(value)]="language"
+      (selectionChange)="switchLanguage()"
+    >
+      <mat-option [value]="'fr'">Fr</mat-option>
+      <mat-option [value]="'en'">En</mat-option>
+    </mat-select>
+  </mat-form-field>
 </mat-toolbar>
