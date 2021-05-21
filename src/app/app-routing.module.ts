@@ -1,3 +1,5 @@
+import { ProductFormComponent } from './shared/components/product-form/product-form.component';
+import { HomeGuardGuard } from './core/guards/home-guard.guard';
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,7 +12,14 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [
+      HomeGuardGuard
+    ]
+  },
+  {
+    path: 'add',
+    component: ProductFormComponent
   },
   {
     path: '**',
