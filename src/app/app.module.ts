@@ -1,3 +1,4 @@
+import { fakeBackendProvider } from './core/services/fake-backend.service';
 import { LocalizationService } from './core/services/localization.service';
 import { CoreModule } from './core/core.module';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
@@ -71,7 +72,8 @@ export function localizationInitializerFactory(
         Injector
       ],
       multi: true
-    }
+    },
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

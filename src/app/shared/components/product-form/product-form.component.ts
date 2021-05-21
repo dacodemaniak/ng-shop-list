@@ -1,7 +1,11 @@
+import { HttpResponse } from '@angular/common/http';
+import { HttpShopListService } from './../../../core/services/http-shop-list.service';
 import { ShopListService } from './../../../core/services/shop-list.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductInterface } from 'src/app/core/interfaces/product-interface';
+import { take } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-form',
@@ -15,7 +19,8 @@ export class ProductFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private shopListService: ShopListService
+    private httpShopListService: HttpShopListService,
+    private snackBar: MatSnackBar
   ) { }
 
   public get c(): any {
@@ -45,8 +50,23 @@ export class ProductFormComponent implements OnInit {
   public validate(): void {
     if (this.form.valid) {
       console.log(`${JSON.stringify(this.form.value)}`);
-      this.newProduct.emit(this.shopListService.add(this.form.value));
-      this.form.reset();
+      this.httpShopListService.add(this.form.value)
+        .pipe(
+          take(1)
+        )
+        .subscribe((httpResponse: HttpResponse<any>) => {
+          if (httpResponse.status === 201) {
+            this.newProduct.emit(httpResponse.body);
+            this.form.reset();
+            this.snackBar.open(
+              'Le produit a bien été créé',
+              'Got it!',
+              {
+                duration: 1500
+              }
+            );
+          }
+        });
     } else {
       console.log('Erreur dans les données du formulaire');
     }

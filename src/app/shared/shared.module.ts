@@ -18,6 +18,10 @@ import {
   MatSelectModule
 } from '@angular/material/select';
 
+import {
+  MatSnackBarModule
+} from '@angular/material/snack-bar';
+
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { UpdateBtnDirective } from './directives/update-btn.directive';
@@ -29,6 +33,7 @@ const materials = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
+  MatSnackBarModule
 ];
 
 @NgModule({
