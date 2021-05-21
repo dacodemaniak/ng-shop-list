@@ -68,7 +68,13 @@ export class ShopListService implements ListInterface<ProductInterface> {
     this.shopListNumber$.next(this.shopList.size);
   }
 
-  public update(product: ProductInterface): void {}
+  public update(product: ProductInterface): void {
+    this.shopList.set(product.id, product);
+    localStorage.setItem(
+      'product-list',
+      JSON.stringify([... this.shopList.values()])
+    );
+  }
 
   private populate(): void {
     const rawStorage = localStorage.getItem('product-list');
