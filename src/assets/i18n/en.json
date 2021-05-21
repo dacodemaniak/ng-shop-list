@@ -1,0 +1,8 @@
+{
+  "title": "ShopList",
+  "home": {
+    "product": "Product",
+    "quantity": "Quantity",
+    "unit": "Unit"
+  }
+}

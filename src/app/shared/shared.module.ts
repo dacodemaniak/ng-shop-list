@@ -14,15 +14,21 @@ import {
   MatInputModule
 } from '@angular/material/input';
 
+import {
+  MatSelectModule
+} from '@angular/material/select';
+
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { UpdateBtnDirective } from './directives/update-btn.directive';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 const materials = [
   MatToolbarModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatSelectModule,
 ];
 
 @NgModule({
@@ -36,6 +42,7 @@ const materials = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    TranslateModule,
     ...materials
   ],
   exports: [
